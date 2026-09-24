@@ -2,10 +2,24 @@
 #include <memory>
 #include <cmath>
 
+<<<<<<< HEAD
 std::unique_ptr<Result> calculateB(std::shared_ptr<const InputData> data) {
     const auto& pts = data->points;
     size_t n = pts.size();
 
+=======
+
+using namespace std;
+
+#include <memory>
+#include <cmath>
+
+
+std::unique_ptr<Result> calculateB(std::shared_ptr<const InputData> data) {
+    const auto& pts = data->points;
+    size_t n = pts.size();
+
+>>>>>>> ad19054 (Resolve merge conflict and finalize Lab 1)
     double sumX = 0, sumX2 = 0, sumX3 = 0, sumX4 = 0;
     double sumY = 0, sumXY = 0, sumX2Y = 0;
 
@@ -20,6 +34,7 @@ std::unique_ptr<Result> calculateB(std::shared_ptr<const InputData> data) {
         sumX2Y += x2 * p.y;
     }
 
+<<<<<<< HEAD
     auto det = [](double a, double b, double c, 
                   double d, double e, double f, 
                   double g, double h, double i) {
@@ -29,6 +44,17 @@ std::unique_ptr<Result> calculateB(std::shared_ptr<const InputData> data) {
     double D = det(n, sumX, sumX2, sumX, sumX2, sumX3, sumX2Y, sumX3, sumX4);
     if (std::abs(D) < 1e-9) {
         return std::make_unique<Result>(Result{{0, 0, 0}, 999.0});
+=======
+    auto det = [](double a, double b, double c,
+        double d, double e, double f,
+        double g, double h, double i) {
+            return a * (e * i - f * h) - b * (d * i - f * g) + c * (d * h - e * g);
+        };
+
+    double D = det(n, sumX, sumX2, sumX, sumX2, sumX3, sumX2Y, sumX3, sumX4);
+    if (std::abs(D) < 1e-9) {
+        return std::make_unique<Result>(Result{ 0.0, 0.0, 0.0, 999.0 });
+>>>>>>> ad19054 (Resolve merge conflict and finalize Lab 1)
     }
 
     double D0 = det(sumY, sumX, sumX2, sumXY, sumX2, sumX3, sumX2Y, sumX3, sumX4);
@@ -46,5 +72,10 @@ std::unique_ptr<Result> calculateB(std::shared_ptr<const InputData> data) {
     }
     mse /= n;
 
+<<<<<<< HEAD
     return std::make_unique<Result>(Result{{a0, a1, a2}, mse});
 }
+=======
+    return std::make_unique<Result>(Result{ a0, a1, a2, mse });
+}                                                                                              
+>>>>>>> ad19054 (Resolve merge conflict and finalize Lab 1)
